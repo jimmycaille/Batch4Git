@@ -28,14 +28,16 @@ FOR /l %%v in (1,1,%count%) DO (
   echo %%v - !array[%%v]!
 )
 echo ----------------------------------------
-echo 9 - Create new project
+echo 98 - Create new project
+echo 99 - Global configuration (username and email)
 echo 0 - Exit
 echo ----------------------------------------
 set /p projnum=Enter the project you wish to manage : 
-if %projnum%==9 (
+if %projnum%==98 (
   cls
   GOTO NEWPROJ
 )
+if %projnum%==99 GOTO GLOBCONF
 if %projnum%==0 GOTO EOF
 cls
 
@@ -59,7 +61,7 @@ echo ----------------------------------------
 echo 5 - Select another project
 echo 0 - Exit
 echo ----------------------------------------
-set /p actionnum=Enter the action you want to do :
+set /p actionnum=Enter the action you want to do : 
 if %actionnum%==1 GOTO PULL
 if %actionnum%==2 GOTO PUSH
 if %actionnum%==3 GOTO STATUS
@@ -121,6 +123,13 @@ cd "%mpath%\!array[%projnum%]!"
 set /p input=Enter the file to checkout : 
 git checkout %input%
 GOTO ACTIONMENU
+
+:GLOBCONF
+set /p username=Enter the global name  : 
+set /p useremail=Enter the global email : 
+git config --global user.name "%username%"
+git config --global user.email %useremail%
+GOTO PROJMENU
 
 :strLen
 
