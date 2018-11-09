@@ -28,11 +28,16 @@ FOR /l %%v in (1,1,%count%) DO (
   echo %%v - !array[%%v]!
 )
 echo ----------------------------------------
+echo 97 - Pull all projects
 echo 98 - Create new project
 echo 99 - Global configuration (username and email)
 echo 0 - Exit
 echo ----------------------------------------
 set /p projnum=Enter the project you wish to manage : 
+if %projnum%==97 (
+  cls
+  GOTO PULLALL
+)
 if %projnum%==98 (
   cls
   GOTO NEWPROJ
@@ -84,18 +89,29 @@ cd "%projname%"
 set /p projurl=Enter new project's URL : 
 set /p alreadyExist=Is it new (0) or existing (1) : 
 if %alreadyExist% == 1 (
+  echo ## initializing...
   git init
+  echo ## adding origin...
   git remote add origin %projurl%
+  echo ## pulling project...
   git pull origin master
+  echo ## setting default branch...
   git branch --set-upstream-to=origin/master master
 ) else (
+  echo ## initializing...
   git init
+  echo ## creating readme...
   echo ## README >> README.md
   echo todo >> README.md
+  echo ## adding file to git...
   git add README.md
+  echo ## commit modifications...
   git commit -m "first commit"
+  echo ## adding origin...
   git remote add origin %projurl%
+  echo ## pushing modifications...
   git push -u origin master
+  echo ## setting default branch...
   git branch --set-upstream-to=origin/master master
 )
 GOTO PROJMENU
@@ -105,11 +121,22 @@ cd "%mpath%\!array[%projnum%]!"
 git pull
 GOTO ACTIONMENU
 
+:PULLALL
+FOR /l %%v in (1,1,%count%) DO (
+  cd "%mpath%\!array[%%v]!"
+  echo ## Pulling project " !array[%%v]!...
+  git pull
+)
+GOTO PROJMENU
+
 :PUSH
 cd "%mpath%\!array[%projnum%]!"
 set /p input=Enter the commit message : 
+echo ## adding files to git...
 git add *
+echo ## commit modifications...
 git commit -m "%input%"
+echo ## pushing modifications...
 git push
 GOTO ACTIONMENU
 
