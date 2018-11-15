@@ -124,7 +124,7 @@ GOTO ACTIONMENU
 :PULLALL
 FOR /l %%v in (1,1,%count%) DO (
   cd "%mpath%\!array[%%v]!"
-  echo ## Pulling project " !array[%%v]!...
+  echo ## Pulling project !array[%%v]!...
   git pull
 )
 GOTO PROJMENU
