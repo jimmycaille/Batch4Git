@@ -28,12 +28,17 @@ FOR /l %%v in (1,1,%count%) DO (
   echo %%v - !array[%%v]!
 )
 echo ----------------------------------------
+echo 96 - Status all projects
 echo 97 - Pull all projects
 echo 98 - Create new project
 echo 99 - Global configuration (username and email)
 echo 0 - Exit
 echo ----------------------------------------
 set /p projnum=Enter the project you wish to manage : 
+if %projnum%==96 (
+  cls
+  GOTO STATUSALL
+)
 if %projnum%==97 (
   cls
   GOTO PULLALL
@@ -124,6 +129,7 @@ GOTO ACTIONMENU
 :PULLALL
 FOR /l %%v in (1,1,%count%) DO (
   cd "%mpath%\!array[%%v]!"
+  echo.
   echo ## Pulling project !array[%%v]!...
   git pull
 )
@@ -144,6 +150,15 @@ GOTO ACTIONMENU
 cd "%mpath%\!array[%projnum%]!"
 git status
 GOTO ACTIONMENU
+
+:STATUSALL
+FOR /l %%v in (1,1,%count%) DO (
+  cd "%mpath%\!array[%%v]!"
+  echo.
+  echo ## Status of project !array[%%v]!...
+  git status
+)
+GOTO PROJMENU
 
 :CHECKOUT
 cd "%mpath%\!array[%projnum%]!"
