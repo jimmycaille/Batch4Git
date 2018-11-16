@@ -7,7 +7,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 REM list folders
 :PROJMENU
 cd /d "%mpath%"
-SET count=0
+SET /a count=0
 FOR /F "tokens=* USEBACKQ" %%F IN (`dir /a:d /b`) DO (
   SET /a count=!count!+1
   SET array[!count!]=%%F
@@ -49,15 +49,24 @@ if %projnum%==98 (
 )
 if %projnum%==99 GOTO GLOBCONF
 if %projnum%==0 GOTO EOF
-cls
 
 :ACTIONMENU
-call :strLen mpath len1
-call :strLen array[%projnum%] len2
-set /a totlen=%len1%+%len2%
-set strtest=
-FOR /l %%v in (1,1,%totlen%) DO (
-  SET strtest=!strtest!อ
+if %projnum% GTR 0 (
+	if %projnum% LEQ %count% (
+		call :strLen mpath len1
+		call :strLen array[%projnum%] len2
+		set /a totlen=%len1%+%len2%
+		set strtest=
+		FOR /l %%v in (1,1,%totlen%) DO (
+		  SET strtest=!strtest!อ
+		)
+	) else (
+		cls
+		GOTO PROJMENU
+	)
+) else (
+	cls
+	GOTO PROJMENU
 )
 
 echo ษออออออออออออออออออออออ%strtest%ป
@@ -81,6 +90,8 @@ if %actionnum%==5 (
   GOTO PROJMENU
 )
 if %actionnum%==0 GOTO EOF
+cls
+GOTO ACTIONMENU
 
 :NEWPROJ
 cd /d "%mpath%"
