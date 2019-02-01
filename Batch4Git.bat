@@ -17,7 +17,7 @@ set len=
 set strtest=
 call :strLen count len1
 call :strLen mpath len2
-echo %len1% *** %len2%
+REM echo %len1% *** %len2%
 set /a totlen=%len1%+%len2%
 FOR /l %%v in (1,1,%totlen%) DO (
   SET strtest=!strtest!Í
