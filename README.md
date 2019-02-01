@@ -2,7 +2,7 @@
 
 ## Screenshots
 ![Screenshot 1](https://raw.githubusercontent.com/jimmycaille/Batch4Git/master/Screenshots/readme.png "Screenshot 1")
-![Screenshot 1](https://raw.githubusercontent.com/jimmycaille/SteamBatchSave/master/Screenshots/readme2.png "Screenshot 2")
+![Screenshot 2](https://raw.githubusercontent.com/jimmycaille/Batch4Git/master/Screenshots/readme2.png "Screenshot 2")
 
 ## Configuration
 * Change the root folder of all project at the beginning of the file :
