@@ -2,9 +2,25 @@
 
 ## Screenshots
 ![Screenshot 1](https://raw.githubusercontent.com/jimmycaille/Batch4Git/master/Screenshots/readme.png "Screenshot 1")
+![Screenshot 1](https://raw.githubusercontent.com/jimmycaille/SteamBatchSave/master/Screenshots/readme2.png "Screenshot 2")
+
+## Configuration
+* Change the root folder of all project at the beginning of the file :
+  * SET mpath=D:\git
 
 ## Features
-* TODO
+* On the main menu, you can
+  * Get status of all projects
+  * Pull all projects
+  * Create a project (also creates the folder)
+    * Choosing existing will pull from git platform
+	* Choosing new project will create an empty README.md and push
+  * Modify global conf (including username and email)
+* Under a specific project, you can
+  * Pull
+  * Push
+  * Get status
+  * Checkout a file
 
 ## Project structure
 - README.md       -> that the file you are reading now
@@ -15,7 +31,7 @@
 ### TODO
 
 ## Known issues
-### TODO
+* Problem with the border of the title (wrong width)
 
 ## Developper infos
 - Author : Jimmy Caille
